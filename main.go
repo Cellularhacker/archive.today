@@ -14,9 +14,8 @@ import (
 )
 
 var (
-	optionDownload = flag.Bool("download", false, "Also wait and download the zip archive. (default: 'false')")
-	optionBundle   = flag.Bool("bundle", false, "Merge all the zip archives in a tarball with a HTML index.")
-	optionUrl      = flag.String("url", "", "[Need] url to archive.")
+	optionDownload = flag.String("download", "", "Also wait and download the zip archive.")
+	optionBundle   = flag.String("bundle", "", "Merge all the zip archives in a tarball with a HTML index.")
 )
 
 func init() {
@@ -24,17 +23,17 @@ func init() {
 }
 
 func main() {
-	if optionUrl == nil {
-		log.Fatal("You must specify a url with -url <url>...")
+	if optionDownload == nil && optionBundle == nil {
+		log.Fatal("You must specify a single option.")
 	}
 
-	if optionBundle != nil && *optionBundle {
-		archiveUrl := commit(*optionUrl)
+	if optionBundle != nil {
+		archiveUrl := commit(*optionBundle)
 		download(archiveUrl)
 	}
 
-	if optionDownload != nil && *optionDownload {
-		download(*optionUrl)
+	if optionDownload != nil {
+		download(*optionDownload)
 	}
 }
 
