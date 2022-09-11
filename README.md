@@ -4,7 +4,7 @@ archive.today
 ```
 archive.today client and bundler.
 
-Usage: archive.today [--download|--bundle] [<url>...]
+Usage: archive.today [--download|--bundle] [url...]
 
 The urls can be fed as command line arguments or on stdin,
 separated by newlines.

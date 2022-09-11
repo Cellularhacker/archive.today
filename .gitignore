@@ -22,4 +22,8 @@ _testmain.go
 *.exe
 *.test
 
+.idea
+.vscode
+*.out
+
 /archive.today
