@@ -18,9 +18,10 @@ do :
     IFS=- read GOOS_1 GOARCH_1 <<< "${os_arch}"
     echo "${os_arch} → GOOS_1: '${GOOS_1}', GOARCH_1: '${GOARCH_1}'"
     GOOS="${GOOS_1}" GOARCH="${GOARCH_1}" go build -v "${BINARY_FILE_NAME}" && \
-    mv "./${BINARY_FILE_NAME}" "${CURRENT_OS_ARCH_DIR}/${BINARY_FILE_NAME}" && \
     if [ "$GOOS_1" = "windows" ]; then
-        mv "${CURRENT_OS_ARCH_DIR}/${BINARY_FILE_NAME}" "${CURRENT_OS_ARCH_DIR}/${BINARY_FILE_NAME}.exe"
+        mv "./${BINARY_FILE_NAME}.exe" "${CURRENT_OS_ARCH_DIR}/${BINARY_FILE_NAME}.exe"
+    else
+        mv "./${BINARY_FILE_NAME}" "${CURRENT_OS_ARCH_DIR}/${BINARY_FILE_NAME}"
     fi
 
 done
